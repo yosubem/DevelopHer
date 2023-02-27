@@ -53,12 +53,11 @@ public class PlayerControler : MonoBehaviour{
 	//TODO:Fix bug: Does not respond on first press
 	private void SwitchCharacter() {
 		currCharacter.gameObject.SetActive(false);
-		if (num == characterList.Length) {
+		num += 1;
+		if (num >= characterList.Length) {
 			num = 0;
 		}
 		currCharacter = characterList[num];
 		currCharacter.gameObject.SetActive(true);
-		num += 1;
-
 	}
 }
