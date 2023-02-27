@@ -3,15 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class PlayableCharacter : MonoBehaviour, IDamagable{
-	int speed;
-	int maxHP;
+	[SerializeField] int speed;
+	[SerializeField] int maxHP;
 	int currHP;
+
+	private void Awake() {
+		currHP = maxHP;
+	}
+
+
+	public int Speed { get { return speed; } }
+	public int CurrHP { get { return currHP; } }
 	public void Die() {
-		throw new System.NotImplementedException();
+		this.gameObject.SetActive(false);
+		this.gameObject.GetComponentInParent<PlayerController>().SwitchCharacter();
 	}
 
 	public void TakeDamage(int howMuch) {
-		throw new System.NotImplementedException();
+		currHP -= howMuch;
+		if (currHP <= 0) {
+			Die();
+		}
 	}
 
 	public abstract void Movement();

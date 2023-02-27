@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Spikes : Trap {
 	public override void ApplyDamage(IDamagable damagable) {
-		throw new System.NotImplementedException();
+		damagable.TakeDamage(_damage);
 	}
 }
