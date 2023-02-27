@@ -14,8 +14,8 @@ public class CharacterController2D : MonoBehaviour
     public bool TouchingGround;
     public Transform PlayerFeet;
     public LayerMask GroundLayer;
-    
 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +31,7 @@ public class CharacterController2D : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            moveXDirection = 1;
+        moveXDirection = 1;
         }
         else if (Input.GetKey(KeyCode.A))
         {
