@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapControler : MonoBehaviour{
+public class TrapController : MonoBehaviour{
 	[SerializeField] private Trap[] trapList;
     [SerializeField] private Transform[] spawnPoints;
-	// Start is called before the first frame update
+
 	void Start(){
 		int rand;
 
@@ -17,9 +17,4 @@ public class TrapControler : MonoBehaviour{
         
     }
 	
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

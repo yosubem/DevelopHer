@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControler : MonoBehaviour{
+public class PlayerController : MonoBehaviour{
 	[SerializeField] private PlayableCharacter[] characterList;
 	private int _directionX;
 	private int _directionY;
-	private Rigidbody2D rb2D;
+	[SerializeField] private Rigidbody2D _rb2D;
 	int num;
 	PlayableCharacter currCharacter;
 
+	public PlayableCharacter CurrCharacter { get { return currCharacter; } }
+
 
 	void Start(){
+		for (int i = 0; i < characterList.Length; i++) {
+			characterList[i].gameObject.SetActive(false);
+		}
+
 		num = Random.Range(0, characterList.Length);
 		currCharacter = characterList[num];
 		currCharacter.gameObject.SetActive(true);
@@ -43,22 +49,25 @@ public class PlayerControler : MonoBehaviour{
 
 		}
 	}
-	/*
+	
 	private void FixedUpdate() {
-		float x = speed * _directionX;
-		float y = speed * _directionY;
-		rb2D.velocity = new Vector2(x, y);
-	}*/
+		_rb2D.velocity = Vector2.zero;
+		float x = CurrCharacter.Speed * _directionX;
+		float y = CurrCharacter.Speed * _directionY;
+		_rb2D.velocity = new Vector2(x, y);
+	}
 
-	//TODO:Fix bug: Does not respond on first press
-	private void SwitchCharacter() {
+	public void SwitchCharacter() {
 		currCharacter.gameObject.SetActive(false);
-		if (num == characterList.Length) {
-			num = 0;
-		}
-		currCharacter = characterList[num];
-		currCharacter.gameObject.SetActive(true);
-		num += 1;
+		do {
+			num += 1;
+			if (num >= characterList.Length) {
+				num = 0;
+			}
 
+			currCharacter = characterList[num];
+		} while (currCharacter.CurrHP <= 0);
+		
+		currCharacter.gameObject.SetActive(true);
 	}
 }
