@@ -8,7 +8,11 @@ public abstract class Trap : MonoBehaviour, IDamagable{
 	[SerializeField] protected int _damage;
 	[SerializeField] protected int _maxHp;
 	private int _currHp;
+	public delegate void TrapDelegate(PlayerController player, Trap trap);
+	public TrapDelegate TrapBehaviour;
 
+
+	public int Damage { get { return _damage; } }
 	public void Awake() {
 		_currHp = _maxHp;
 	}
@@ -30,7 +34,8 @@ public abstract class Trap : MonoBehaviour, IDamagable{
 		//Debug.Log(collision.collider.gameObject.layer);
 		//Debug.Log(whatIDamage & (1 << collision.collider.gameObject.layer));
 		if ((whatIDamage & (1 << collision.collider.GetComponent<PlayerController>().CurrCharacter.gameObject.layer)) != 0){
-			ApplyDamage(collision.collider.gameObject.GetComponent<PlayerController>().CurrCharacter);
+			//ApplyDamage(collision.collider.gameObject.GetComponent<PlayerController>().CurrCharacter);
+			TrapBehaviour(collision.collider.gameObject.GetComponent<PlayerController>(), this);
 			TakeDamage(1);
 			Debug.Log("Ouch");
 		} else {

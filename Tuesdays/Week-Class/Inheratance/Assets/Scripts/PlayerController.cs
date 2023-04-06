@@ -9,11 +9,16 @@ public class PlayerController : MonoBehaviour{
 	[SerializeField] private Rigidbody2D _rb2D;
 	int num;
 	PlayableCharacter currCharacter;
+	private Stack<Vector3> _playerMovementHistory;
+
 
 	public PlayableCharacter CurrCharacter { get { return currCharacter; } }
-
-
+	public Stack<Vector3> PlayerMovementHistory { get { return _playerMovementHistory; } }
+	public Rigidbody2D RB2D { get { return _rb2D; } }
+	
 	void Start(){
+		_playerMovementHistory = new Stack<Vector3>();
+
 		for (int i = 0; i < characterList.Length; i++) {
 			characterList[i].gameObject.SetActive(false);
 		}
@@ -55,6 +60,8 @@ public class PlayerController : MonoBehaviour{
 		float x = CurrCharacter.Speed * _directionX;
 		float y = CurrCharacter.Speed * _directionY;
 		_rb2D.velocity = new Vector2(x, y);
+		PlayerMovementHistory.Push(_rb2D.position);
+
 	}
 
 	public void SwitchCharacter() {
