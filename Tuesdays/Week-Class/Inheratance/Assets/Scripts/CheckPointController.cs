@@ -9,6 +9,5 @@ public class CheckPointController : MonoBehaviour{
 	public void OnTriggerEnter2D(Collider2D collision) {
 		text.SetActive(true);
 		playerController.enabled = false;
-
 	}
 }

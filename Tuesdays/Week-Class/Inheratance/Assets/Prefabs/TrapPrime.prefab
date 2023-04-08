@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6004211829924002411}
   - component: {fileID: 6411926663044490650}
   m_Layer: 0
-  m_Name: 9-Sliced
+  m_Name: TrapPrime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
