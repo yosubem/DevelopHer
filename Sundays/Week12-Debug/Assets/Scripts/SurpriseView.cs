@@ -1,24 +1,25 @@
-
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 
-public class Surprise : BaseView
+public class SurpriseView : BaseView
 {
-    private int initSupriseValue;
-    void Awake()
-    {
-        initSupriseValue = Random.Range(1, 1000);
-    }
+	private int initSupriseValue;
+	private TextMeshProUGUI _text;
+	void Awake()
+	{
+		initSupriseValue = Random.Range(1, 1000);
+		_text = gameObject.GetComponentInChildren<TextMeshProUGUI>();
+	}
 
-    protected override void onClickInternal()
-    {
-       initSupriseValue /= Random.Range(0, 19);
-
-       if (initSupriseValue == 0)
-       {
-           gameObject.GetComponent<TextMeshProUGUI>().text = "congratz!!";
-       }
-    }
+	protected override void onClickInternal()
+	{
+		_text.text = $"surprise in: {initSupriseValue}";
+		initSupriseValue /= Random.Range(1, 19);
+		if (initSupriseValue == 0)
+		{
+		  _text.text = "congratz!!";
+		}
+	}
 
 }
