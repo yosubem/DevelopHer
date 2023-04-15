@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class SpawnnyModel : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gameObject.AddComponent<Image>();
+        gameObject.AddComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame

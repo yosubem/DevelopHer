@@ -1,9 +1,8 @@
-
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpawnnerController : BaseView
+public class SpawnnerView : BaseView
 {
     [SerializeField] private GameObject _toSpawn;
     protected override void onClickInternal()
