@@ -13,8 +13,10 @@ public class ReplyView : BaseView
 
     protected override void onClickInternal()
     {
-        Action LastButtonClicked = _clickedActions.Pop();
-        LastButtonClicked();
+        if (_clickedActions.Count > 0) {
+            Action LastButtonClicked = _clickedActions.Pop();
+            LastButtonClicked();
+        }
     }
 
     void OnAnyOtherButtonClicked(Action clickedFunc)
